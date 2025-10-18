@@ -1,0 +1,54 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="row mt-3">
+    <div class="col-md-8 offset-md-2">
+        <h3>My Bookings</h3>
+        <hr>
+
+        <% if (myBookings && myBookings.length > 0) { %>
+            <% for (let booking of myBookings) { %>
+                <div class="booking-section mb-4">
+                    <% if (booking.listing && booking.listing.images && booking.listing.images.length > 0) { %>
+                        <img src="<%= booking.listing.images[0].url %>" class="img-fluid rounded mb-3" alt="<%= booking.listing.title %>">
+                    <% } %>
+
+                    <h4><%= booking.listing ? booking.listing.title : "Listing no longer available" %></h4>
+
+                    <p>
+                        <strong>Location:</strong> <%= booking.listing.location %><br>
+                        <strong>Visitor:</strong> <%= booking.fullName %><br>
+                        <strong>Dates:</strong> <%= booking.checkIn.toDateString() %> to <%= booking.checkOut.toDateString() %><br>
+                        <strong>Guests:</strong> <%= booking.guests %><br>
+                        <strong>Payment:</strong> <%= booking.paymentMethod %><br>
+                 <strong>Total Amount:</strong>
+<span>
+    <% if (booking.finalPrice) { %>
+        &#8377;<%= booking.finalPrice.toLocaleString("en-IN") %>
+    <% } else { %>
+        &#8377;<%= booking.totalPrice.toLocaleString("en-IN") %>
+    <% } %>
+    <span class="text-muted small"> (incl. taxes & fees)</span>
+</span>    
+
+                    </p>
+
+                    <div class="d-flex gap-2">
+                        <a href="/listings/<%= booking.listing._id %>" class="btn btn-dark">View Listing</a>
+                        <form method="POST" action="/bookings/<%= booking._id %>?_method=DELETE">
+                            <button class="btn btn-outline-danger">Cancel Booking</button>
+                        </form>
+                    </div>
+                </div>
+                
+               
+            <% } %>
+        <% } else { %>
+            <div class="text-center py-5">
+                <h4>You haven't booked any stays yet.</h4>
+                <p class="text-muted">When you do, your upcoming trips will be shown here.</p>
+                <br/>
+                <a href="/listings" class="btn btn-dark mt-2">Start Exploring</a>
+            </div>
+        <% } %>
+    </div>
+</div>

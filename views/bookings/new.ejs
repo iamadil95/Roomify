@@ -1,0 +1,68 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="row mt-3">
+    <div class="col-md-8 offset-md-2">
+        <h3> <b><%= listing.title %></b></h3>
+        <p class="text-muted">Place to stay in <%= listing.location %>, <%= listing.country %></p>
+        <hr>
+
+        <form method="POST" action="/listings/<%= listing._id %>/bookings" novalidate class="needs-validation">
+
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" id="fullName" name="booking[fullName]" class="form-control" required placeholder="John Cena">
+                <div class="invalid-feedback">Please enter your valid name.</div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="checkin-booking" class="form-label">Check-in</label>
+                    <input type="text" id="checkin-booking" name="booking[checkIn]" class="form-control" required placeholder="Select a date">
+                    <div class="invalid-feedback">A check-in date is required.</div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="checkout-booking" class="form-label">Check-out</label>
+                    <input type="text" id="checkout-booking" name="booking[checkOut]" class="form-control" required placeholder="Select a date">
+                    <div class="invalid-feedback">A check-out date is required.</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="guests" class="form-label">Guests</label>
+                    <input type="number" id="guests" name="booking[guests]" class="form-control" required min="1" max="<%= listing.maxGuests || 10 %>" value="1">
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="roomType" class="form-label">Room Type</label>
+                    <select id="roomType" name="booking[roomType]" class="form-select" required>
+                        <option selected disabled value="">Select a room</option>
+                        <option value="Single Bed">Single Bed</option>
+                        <option value="Double Bed">Double Bed</option>
+                        <option value="Deluxe Room">Deluxe Room</option>
+                         <option value="King Bed">King Bed</option>
+                        <option value="Suite">Suite</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select id="paymentMethod" name="booking[paymentMethod]" class="form-select" required>
+                     <option selected disabled value="">Select a payment method</option>
+                      <option value="Cash">Cash (Most Popular)</option>
+                     <option value="Credit Card">Credit Card</option>
+                     <option value="Debit Card">Debit Card</option>
+                     <option value="UPI">UPI</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="specialRequests" class="form-label">Special Requests (Optional)</label>
+                <textarea id="specialRequests" name="booking[specialRequests]" class="form-control" rows="3" placeholder="e.g., late check-in, any food allergies, crib needed"></textarea>
+            </div>
+            <br/>
+
+            <button type="submit" class="btn btn-danger ">Confirm Booking</button> 
+        </form> <br/>
+    </div>
+</div>

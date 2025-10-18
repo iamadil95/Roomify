@@ -1,0 +1,112 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-3">
+    <div class="col-md-8 offset-md-2">
+      
+        <h3>Create a New Listing</h3>
+        <br />
+        <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" placeholder="Enter listing title" type="text" class="form-control" required />
+                <div class="valid-feedback">Title looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" placeholder="Enter description" class="form-control"
+                    required></textarea>
+                <div class="invalid-feedback">Description is required.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Listing Image</label>
+                <input name="listing[images]" placeholder="Upload Image file" type="file" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="listing[category]" class="form-select" required>
+                    <option disabled selected value="">Choose a category</option>
+                    <option value="Trending">Trending</option>
+                    <option value="Iconic Cities">Iconic Cities</option>
+                    <option value="Villas">Villas</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Mansions">Mansions</option>
+                    <option value="Poolside">Poolside</option>
+                    <option value="Glamping">Glamping</option>
+                    <option value="Rural Retreats">Rural Retreats</option>
+                    <option value="Snow Escapes">Snow Escapes</option>
+                    <option value="The Riviera">The Riviera</option>
+                    <option value="Luxe">Luxe</option>
+                </select>
+                <div class="invalid-feedback">Please choose a category.</div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" placeholder="Price per night in ₹₹₹" type="number" class="form-control"
+                        required />
+                    <div class="invalid-feedback">Please enter a valid price.</div>
+                </div>
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" placeholder="Enter country" type="text" class="form-control" required />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" placeholder="Enter location" type="text" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="cancellationPolicy" class="form-label">Cancellation Policy</label>
+                <textarea name="listing[cancellationPolicy]" placeholder="Enter cancellation policy details..."
+                    class="form-control" required></textarea>
+                <div class="invalid-feedback">A cancellation policy is required.</div>
+            </div>
+<div class="mb-3">
+    <label class="form-label"><b>The Amenities this place offers</b></label>
+    <p class="text-muted small">(Choose more than 1)</p>
+    <div class="row">
+        <% 
+        const amenityIcons = { 
+            "WiFi": "fa-solid fa-wifi", 
+            "Air Conditioning": "fa-solid fa-snowflake",
+            "Heating": "fa-solid fa-fire", 
+            "Parking": "fa-solid fa-square-parking", 
+            "Breakfast Included": "fa-solid fa-mug-saucer", 
+            "Private Pool": "fa-solid fa-water-ladder", 
+            "Hiking Trails": "fa-solid fa-person-hiking", 
+            "Guided Tours": "fa-solid fa-map-location-dot", 
+            "Restaurant": "fa-solid fa-utensils", 
+            "Campfire": "fa-solid fa-fire-burner", 
+            "Kitchenette": "fa-solid fa-kitchen-set", 
+            "TV": "fa-solid fa-tv", 
+            "Laundry Service": "fa-solid fa-shirt", 
+            "24/7 Reception": "fa-solid fa-bell-concierge", 
+            "Gym": "fa-solid fa-dumbbell" 
+        }; 
+        
+        // CORRECTED: "24/7 Reception" is now on a single line
+        const amenities = [ "WiFi", "Air Conditioning", "Heating", "Parking", "Breakfast Included", "Private Pool", "Hiking Trails", "Guided Tours", "Restaurant", "Campfire", "Kitchenette", "TV", "Laundry Service", "24/7 Reception", "Gym" ];
+        %>
+
+        <% amenities.forEach(a => { %>
+            <div class="col-md-4 col-sm-6 mb-2">
+                <div class="form-check d-flex align-items-center">
+                    <input class="form-check-input me-2" type="checkbox" name="listing[amenities]" value="<%= a %>" id="<%= a.replace(/\s+/g, '') %>">
+                    <label class="form-check-label d-flex align-items-center" for="<%= a.replace(/\s+/g, '') %>">
+                        <i class="<%= amenityIcons[a] || 'fa-solid fa-circle-check' %> text-secondary me-2"></i>
+                        <%= a %>
+                    </label>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+            <br />
+            <button class="btn btn-dark add-btn mb-3">Create Listing</button>
+            <br /><br />
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+/* Cards */
+.listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+    background-color: #F9FDFE !important;
+}
+
+
+/* Sets a consistent height for all listing card images */
+.listing-card .card-img-top {
+    height: 20rem;
+    object-fit: cover; /* Prevents the image from being stretched or distorted */
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none !important;
+    color: #222222 !important;
+}
+
+/* Card Effect */
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* Show Page Style */
+
+.show-img {
+    /* height: 30vh; */
+     width: 100%;
+  height: 350px;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.btns {
+    display: flex;
+}
+
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}

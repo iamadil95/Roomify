@@ -1,0 +1,85 @@
+/* --- Filter Bar --- */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  position: relative;
+}
+
+/* Scrollable container */
+.filter-scroll-container {
+  flex-grow: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.filter-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  flex-shrink: 0;
+  transition: 0.2s ease;
+}
+.scroll-btn:hover {
+  background: #f6f6f6;
+}
+.left-btn {
+  margin-right: 0.5rem;
+}
+.right-btn {
+  margin-left: 0.5rem;
+}
+
+/* --- Individual Filter Styles --- */
+.filter {
+  display: inline-block;
+  text-align: center;
+  margin-right: 1.25rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.filter:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.filter i {
+  font-size: 1.1rem;
+  color: #fe424d; /* your color preserved */
+  margin-bottom: 0.2rem;
+}
+.filter p {
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+}
+.filter-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- GST Toggle --- */
+.tax-toggle {
+  flex-shrink: 0;
+  border: 1px solid #b0b0b0;
+  border-radius: 1rem;
+  height: 3.25rem;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(254, 66, 77, 0.25);
+}
+.form-check-input:checked {
+  background-color: #fe424d;
+  border-color: #fe424d;
+}

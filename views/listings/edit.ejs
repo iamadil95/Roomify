@@ -1,0 +1,104 @@
+<% layout("/layouts/boilerplate") %>
+  <br />
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h3>Edit Your Listing</h3>
+      <br />
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation"
+        enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input name="listing[title]" type="text" value="<%= listing.title %>" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="listing[description]" type="text" rows="3"
+            cols="10" class="form-control" required><%= listing.description %>
+            </textarea>
+          <div class="invalid-feedback">Please enter a short description</div>
+        </div>
+
+    
+<div class="mb-3">
+    <label class="form-label"><b>Current Listing Images</b></label>
+    <div class="row">
+        <% if (listing.images && listing.images.length > 0) { %>
+            <% listing.images.forEach((img, index) => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="image-preview-container">
+                        <img src="<%= img.url %>" class="listing-edit-img" alt="Listing Image <%= index + 1 %>">
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" name="deleteImages[]" value="<%= img.filename %>" id="image-delete-<%= index %>">
+                            <label class="form-check-label ms-2" for="image-delete-<%= index %>">Delete</label>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="text-muted">No images currently uploaded.</p>
+        <% } %>
+    </div>
+</div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload New Image(s)</label>
+          <input name="listing[images]" type="file" class="form-control" id="image"
+          multiple
+           />
+        </div>
+
+        <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select id="category" name="listing[category]" class="form-select" required>
+        <%  const allCategories = ["Trending",
+         "Iconic Cities", "Villas",
+          "Mountains", "Mansions", 
+          "Poolside", "Glamping", "Rural Retreats",
+          "Snow Escapes", "The Riviera", "Luxe"];
+        
+        // Loop through all categories to create the options
+        allCategories.forEach(cat => { %>
+            <option 
+                value="<%= cat %>" 
+                <%= listing.category === cat ? 'selected' : '' %> > <%= cat %>
+            </option>
+        <% }); %>
+    </select>
+</div>
+
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input name="listing[price]" type="number" value="<%= listing.price %>" class="form-control" required />
+          </div>
+
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input name="listing[country]" type="text" value="<%= listing.country %>" class="form-control" required />
+            <div class="invalid-feedback">Country is required.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input name="listing[location]" type="text" value="<%= listing.location %>" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="cancellationPolicy" class="form-label"><b>Cancellation Policy</b></label>
+          <textarea
+            name="listing[cancellationPolicy]"
+            type="text"
+            rows="3"
+            cols="10"
+            class="form-control"
+            required
+          ><%= listing.cancellationPolicy %></textarea>
+          <div class="invalid-feedback">Cancellation Policy is not valid!</div>
+        </div>
+        
+        <button class="btn btn-dark edit-btn mb-3">Update</button>
+        <br /> <br />
+      </form>
+    </div>
+  </div>

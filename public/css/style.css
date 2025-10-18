@@ -1,0 +1,53 @@
+/* General Styles */
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    background-color: #F9FDFE !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Make sure the body and html take full height */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+/* Make sure the container takes full height minus navbar and footer */
+.container {
+    flex: 1;
+}
+
+/* Map style */
+#map {
+    height: 400px; 
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    margin: 1.25rem auto;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    #map {
+        height: 330px; /* Taller for mobile portrait view */
+        width: calc(100% - 1rem);
+        max-width: 100%;
+        margin: 1rem auto;
+        border-radius: 8px;
+    }
+}
+
+
+/* Index ejs styling*/
+
+ .card-text {
+    font-weight: 500; 
+}
+
+
+
+
+
+
+
