@@ -1,7 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 
 <div class="filters">
-  <!-- Scroll arrows + filter container -->
   <button class="scroll-btn left-btn" id="leftArrow">&#8249;</button>
 
   <div class="filter-scroll-container" id="scrollableFilters">
@@ -106,7 +105,7 @@
 </div>
 
 <script>
-  // --- GST Toggle Logic (unchanged)
+  // --- GST Toggle Logic 
   const taxSwitch = document.getElementById("tax-toggle-switch");
   const prices = document.querySelectorAll(".price");
   const taxInfos = document.querySelectorAll(".tax-info");
@@ -132,7 +131,7 @@
   const scrollContainer = document.getElementById("scrollableFilters");
   const leftArrow = document.getElementById("leftArrow");
   const rightArrow = document.getElementById("rightArrow");
-  const scrollAmount = window.innerWidth < 768 ? 200 : 250;
+  const scrollAmount = window.innerWidth < 768 ? 120 : 250;
 
 
   leftArrow.addEventListener("click", () => {

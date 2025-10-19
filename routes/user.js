@@ -23,7 +23,6 @@ router.route("/login")
     userController.redirectLogin   // redirect after successful login
   );
 
-
 // Logout route
 router.get("/logout", userController.logout);
 

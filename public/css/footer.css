@@ -9,19 +9,35 @@
     text-decoration: underline;
 }
 
-.f-info-links,
+.f-info-links {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .f-info-socials,
 .f-info-brand {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+}
+
+.f-info-socials a {
+    margin: 0 0.5rem;
+    color: #000000;
+    transition: opacity 0.2s;
+}
+
+.f-info-socials a:hover {
+    opacity: 0.6;
 }
 
 .f-info-socials i {
     margin-right: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #000000; 
 }
 
@@ -29,7 +45,7 @@
     text-align: center;
     height: 8rem;
     display: flex;
-    background-color: #ebebeb;
+    background-color:#f7f7f7;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;

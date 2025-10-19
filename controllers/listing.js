@@ -1,8 +1,3 @@
-// MVC - Controller for Listings
-// M = Models (database schemas)
-// V = Views/Render (EJS templates,frontend)
-// C = Controllers (backend functionality)
-
 const Listing = require("../models/listing");
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const ExpressError = require("../utils/ExpressError");
@@ -10,10 +5,9 @@ const { cloudinary, storage } = require("../cloudConfig.js");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
-
 // Search Listings
 module.exports.searchListings = async (req, res) => {
-    // 1. Get destination and dates from the URL query
+    //  Get destination and dates from the URL query
     const { destination } = req.query;
     let filter = {};
 
@@ -32,7 +26,6 @@ module.exports.searchListings = async (req, res) => {
     res.render("listings/index.ejs", { allListings });
 };
 
-
 // Index - Show all listings
 module.exports.index = async (req, res) => {
     const { category } = req.query;
@@ -44,18 +37,12 @@ module.exports.index = async (req, res) => {
     }
     // If no category was provided, the filter remains empty.
 
-    // 4. Find all listings that match the filter
-    // If the filter is empty, it finds all listings.
-    // If the filter is { category: "Villas" }, it finds only villas.
     const allListings = await Listing.find(filter);
-
     res.render("listings/index.ejs", { allListings });
 };
 
-
 // Render New Form
 module.exports.renderNewForm = (req, res) => {
-    //console.log(req.user);
     res.render("listings/new.ejs");
 };
 
@@ -91,14 +78,10 @@ module.exports.createListing = async (req, res) => {
         limit: 1,
     }).send();
 
-    // let url = req.file.path;
-    // let filename = req.file.filename;
-
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.geometry = response.body.features[0].geometry;
 
-    //   newListing.images = [{ url, filename }];
     // Put the single image from req.file into an array before saving
     if (req.file) {
         newListing.images = [{ url: req.file.path, filename: req.file.filename }];
@@ -107,6 +90,7 @@ module.exports.createListing = async (req, res) => {
     //represent owner id info
     let savedListing = await newListing.save();
     console.log(savedListing);
+
     req.flash("success", "New Listing is Created !");
     res.redirect("/listings");
 };
@@ -139,7 +123,7 @@ module.exports.updateListing = async (req, res) => {
         req.flash("error", "Listing not found!");
         return res.redirect("/listings");
     }
-    //Update the simple text fields from the form
+   
     listing.set(req.body.listing);
 
     //Re-run geocoding if the location has changed
@@ -172,7 +156,6 @@ module.exports.updateListing = async (req, res) => {
     req.flash("success", "Listing is Updated!");
     res.redirect(`/listings/${id}`); //Shows the updated listing 
 };
-
 
 
 // Delete Listing

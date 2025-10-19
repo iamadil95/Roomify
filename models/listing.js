@@ -83,6 +83,5 @@ listingSchema.post("findOneAndDelete", async function (listing) {
   }
 });
 
-
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports = Listing;

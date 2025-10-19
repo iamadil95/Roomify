@@ -19,7 +19,6 @@ module.exports.listingSchema = Joi.object({
   deleteImages: Joi.array().items(Joi.string()),
 });
 
-
 // Review Schema Validation
 module.exports.reviewSchema = Joi.object({
   review: Joi.object({
@@ -27,7 +26,6 @@ module.exports.reviewSchema = Joi.object({
     comment: Joi.string().required(),
   }).required(),
 });
-
 
 //Booking Schema Validation
 module.exports.bookingSchema = Joi.object({

@@ -5,11 +5,11 @@
     background-color: #F9FDFE !important;
 }
 
-
 /* Sets a consistent height for all listing card images */
 .listing-card .card-img-top {
     height: 20rem;
-    object-fit: cover; /* Prevents the image from being stretched or distorted */
+    object-fit: cover;
+    /* Prevents the image from being stretched or distorted */
 }
 
 .card-img-top {
@@ -42,13 +42,12 @@
 }
 
 /* Show Page Style */
-
 .show-img {
     /* height: 30vh; */
-     width: 100%;
-  height: 350px;
-  object-fit: contain;
-  border-radius: 1rem;
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 1rem;
 }
 
 .btns {

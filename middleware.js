@@ -47,6 +47,7 @@ module.exports.validateListing = (req, res, next) => {
     next();
   }
 };
+
 // Validation: Review
 module.exports.validateReview = (req, res, next) => {
   let { error } = reviewSchema.validate(req.body, { convert: true }); //  allow conversion

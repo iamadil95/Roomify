@@ -8,18 +8,20 @@ module.exports.renderSignupForm = (req, res) => {
 // Handle Signup
 module.exports.signup = async (req, res) => {
     try {
-        let { username, email, password } = req.body; //req.body is like the envelope carrying the message (data) from the client to the server
-         // Create new user object (without password yet)
+        let { username, email, password } = req.body; 
+         
         const newUser = new User({ email, username });
          // Register user with hashed password (passport-local-mongoose)
         const registeredUser = await User.register(newUser, password);
         console.log(registeredUser);
-         // Auto-login after signup
+
+        // Auto-login after signup
+        
         req.login(registeredUser, (err) => {
             if (err) {
                 return next(err);
             }
-            req.flash("success", "user was registered successfully");
+            req.flash("success", "User is registered successfully");
             res.redirect("/listings");
         });
     } catch (e) {
@@ -35,7 +37,7 @@ module.exports.renderLoginForm = (req, res) => {
 
 // Redirect After Login
 module.exports.redirectLogin = async (req, res) => {
-    req.flash("success", "Welcome to Airbook!");
+    req.flash("success", "Welcome to Roomify!");
     let redirectUrl = res.locals.redirectUrl || "/listings";
     res.redirect(redirectUrl);
 };
@@ -47,7 +49,7 @@ module.exports.logout = (req, res, next) => {
         if (err) {
             return next(err);
         }
-        req.flash("success", "you are logged out !");
+        req.flash("success", "You have been logged out !");
         res.redirect("/listings");
     });
 };

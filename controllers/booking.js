@@ -35,14 +35,12 @@ module.exports.createBooking = async (req, res) => {
  res.redirect("/bookings");
 };
 
-
 module.exports.renderMyBookings = async (req, res) => {
     const userId = req.user._id;
   // Find all bookings made by the current user and populate the listing details
   
   const myBookings = await Booking.find({ user: userId }).populate("listing");
 
-  // Use .map() to create a new array with final prices calculated
     const bookingsWithFinalPrice = myBookings.map(booking => {
         let finalPrice = booking.totalPrice; // Default to the base price
 
@@ -53,7 +51,7 @@ module.exports.renderMyBookings = async (req, res) => {
             finalPrice = booking.totalPrice + totalTax;
         }
         
-        // Return a new object that includes the original booking data plus the new finalPrice
+        // Returns a new object that includes the original booking data plus the new finalPrice
         return { ...booking.toObject(), finalPrice };
     });
   
@@ -69,7 +67,6 @@ module.exports.renderNewForm = async (req, res) => {
   }
   res.render("bookings/new.ejs", { listing });
 };
-
 
  // Deletes a booking
 module.exports.destroyBooking = async (req, res) => {
